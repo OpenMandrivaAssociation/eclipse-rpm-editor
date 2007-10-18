@@ -1,10 +1,10 @@
 %define gcj_support         1
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             2610
+%define svn_rev             3395
 
 Name:           eclipse-rpm-editor
 Version:        0.1.0
-Release:        %mkrel 0.7.2
+Release:        %mkrel 0.10.1
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
@@ -28,8 +28,7 @@ BuildRequires: eclipse-pde >= 1:3.3.0
 BuildRequires: eclipse-changelog >= 2.5.1
 Requires: eclipse-platform >= 3.3.1 
 Requires: eclipse-changelog >= 2.5.1
-# XXX: was rpmlint >= 0.81
-Requires: rpmlint >= 0.80
+Requires: rpmlint >= 0.81
 Requires: rpmdevtools
 
 # These plugins are really noarch but they the changelog plugin need cdt which 
