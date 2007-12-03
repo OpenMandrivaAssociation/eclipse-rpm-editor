@@ -4,7 +4,7 @@
 
 Name:           eclipse-rpm-editor
 Version:        0.2.0
-Release:        %mkrel 0.2.1
+Release:        %mkrel 0.2.2
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
@@ -24,6 +24,7 @@ BuildRequires:    java-devel >= 1.5.0
 %if ! %{gcj_support}
 BuildArch: noarch
 %endif
+BuildRequires: zip
 BuildRequires: eclipse-pde >= 1:3.3.0
 BuildRequires: eclipse-changelog >= 2.5.1
 Requires: eclipse-platform >= 3.3.1 
