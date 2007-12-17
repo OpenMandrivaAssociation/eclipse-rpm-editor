@@ -14,7 +14,6 @@ URL:            http://wiki.eclipse.org/index.php/Linux_Distributions_Project
 #   sh ./fetch-specfile-editor.sh %{svn_rev}
 Source0:        specfile-editor-fetched-src-%{svn_rev}.tar.bz2
 Source1:        fetch-specfile-editor.sh
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
