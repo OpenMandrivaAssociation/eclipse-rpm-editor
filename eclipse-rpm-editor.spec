@@ -17,12 +17,11 @@ Source1:        fetch-specfile-editor.sh
 
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
-%else
-BuildRequires:    java-devel >= 1.5.0
 %endif
 %if ! %{gcj_support}
 BuildArch: noarch
 %endif
+BuildRequires: java-rpmbuild
 BuildRequires: zip
 BuildRequires: eclipse-pde >= 1:3.3.0
 BuildRequires: eclipse-changelog >= 2.5.1
