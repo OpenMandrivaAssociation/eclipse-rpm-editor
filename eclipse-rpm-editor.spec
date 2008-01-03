@@ -1,10 +1,10 @@
 %define gcj_support         1
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             6310
+%define svn_rev             6830
 
 Name:           eclipse-rpm-editor
-Version:        0.2.0
-Release:        %mkrel 0.2.2
+Version:        0.2.1
+Release:        %mkrel 0.1.1
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
@@ -14,7 +14,6 @@ URL:            http://wiki.eclipse.org/index.php/Linux_Distributions_Project
 #   sh ./fetch-specfile-editor.sh %{svn_rev}
 Source0:        specfile-editor-fetched-src-%{svn_rev}.tar.bz2
 Source1:        fetch-specfile-editor.sh
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
