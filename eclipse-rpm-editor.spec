@@ -8,6 +8,7 @@ Release:        %mkrel 0.2.1
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:        EPL
 URL:            http://wiki.eclipse.org/index.php/Linux_Distributions_Project
 # This tarball was made using the included script, like so:
