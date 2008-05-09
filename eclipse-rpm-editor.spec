@@ -1,10 +1,10 @@
 %define gcj_support         1
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             7212
+%define svn_rev             15891
 
 Name:           eclipse-rpm-editor
-Version:        0.2.1
-Release:        %mkrel 0.2.1
+Version:        0.3.0
+Release:        %mkrel 0.0.1
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
@@ -66,6 +66,9 @@ homedir=$(cd home > /dev/null && pwd)
      -DbuildDirectory=$(pwd)/build \
      -Dbuilder=%{eclipse_base}/plugins/org.eclipse.pde.build/templates/package-build \
      -f %{eclipse_base}/plugins/org.eclipse.pde.build/scripts/build.xml \
+     -DjavacSource=1.6 \
+     -DjavacTarget=1.6 \
+     -Dant.build.javac.target=5.0 \
      -vmargs -Duser.home=$homedir \
 
 %install
@@ -74,25 +77,17 @@ install -d -m 755 %{buildroot}%{eclipse_base}
 unzip -q -d %{buildroot}%{eclipse_base}/.. \
  build/rpmBuild/org.eclipse.linuxtools.rpm.ui.editor.zip
 
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
+%{gcj_compile}
 
 %clean
 rm -rf %{buildroot}
 
 %if %{gcj_support}
 %post
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
+%{update_gcjdb}
 
 %postun
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
+%{clean_gcjdb}
 %endif
 
 %files
@@ -103,7 +98,4 @@ fi
 %doc %{eclipse_base}/features/org.eclipse.linuxtools.rpm.ui.editor_*/*.html
 %{eclipse_base}/features/org.eclipse.linuxtools.rpm.ui.editor_*/*.xml
 %{eclipse_base}/features/org.eclipse.linuxtools.rpm.ui.editor_*/*.properties
-%if %{gcj_support}
-%dir %{_libdir}/gcj/%{name}
-%{_libdir}/gcj/%{name}/org.eclipse.linuxtools.rpm.*
-%endif
+%{gcj_files}
