@@ -1,10 +1,10 @@
 %define gcj_support         1
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             15891
+%define svn_rev             16266
 
 Name:           eclipse-rpm-editor
 Version:        0.3.0
-Release:        %mkrel 0.0.1
+Release:        %mkrel 0.0.2
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
