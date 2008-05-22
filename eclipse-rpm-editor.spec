@@ -1,10 +1,10 @@
-%define gcj_support         1
+%define gcj_support         0
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             16266
+%define svn_rev             16780
 
 Name:           eclipse-rpm-editor
 Version:        0.3.0
-Release:        %mkrel 0.0.2
+Release:        %mkrel 0.0.3
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
@@ -68,7 +68,6 @@ homedir=$(cd home > /dev/null && pwd)
      -f %{eclipse_base}/plugins/org.eclipse.pde.build/scripts/build.xml \
      -DjavacSource=1.6 \
      -DjavacTarget=1.6 \
-     -Dant.build.javac.target=5.0 \
      -vmargs -Duser.home=$homedir \
 
 %install
