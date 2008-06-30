@@ -1,20 +1,20 @@
 %define gcj_support         0
 %define eclipse_base        %{_datadir}/eclipse
-%define svn_rev             16780
+%define svn_rev             18654
 
 Name:           eclipse-rpm-editor
-Version:        0.3.0
-Release:        %mkrel 0.0.3
+Version:        0.4.0
+Release:        %mkrel 0.3.1
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:        EPL
 URL:            http://wiki.eclipse.org/index.php/Linux_Distributions_Project
 # This tarball was made using the included script, like so:
 #   sh ./fetch-specfile-editor.sh %{svn_rev}
 Source0:        specfile-editor-fetched-src-%{svn_rev}.tar.bz2
 Source1:        fetch-specfile-editor.sh
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
@@ -48,27 +48,8 @@ useful for maintenance of RPM specfiles within the Eclipse IDE.
 
 %build
 # See comments in the script to understand this.
-/bin/sh -x %{_datadir}/eclipse/buildscripts/copy-platform SDK %{eclipse_base} changelog
-SDK=$(cd SDK > /dev/null && pwd)
-
-# Eclipse may try to write to the home directory.
-mkdir home
-homedir=$(cd home > /dev/null && pwd)
-
-%{java} -cp $SDK/startup.jar \
-     -Dosgi.sharedConfiguration.area=%{_libdir}/eclipse/configuration \
-     org.eclipse.core.launcher.Main \
-     -application org.eclipse.ant.core.antRunner \
-     -Dtype=feature \
-     -Did=org.eclipse.linuxtools.rpm.ui.editor \
-     -DbaseLocation=$SDK \
-     -DsourceDirectory=$(pwd) \
-     -DbuildDirectory=$(pwd)/build \
-     -Dbuilder=%{eclipse_base}/plugins/org.eclipse.pde.build/templates/package-build \
-     -f %{eclipse_base}/plugins/org.eclipse.pde.build/scripts/build.xml \
-     -DjavacSource=1.6 \
-     -DjavacTarget=1.6 \
-     -vmargs -Duser.home=$homedir \
+%{eclipse_base}/buildscripts/pdebuild -d changelog -f org.eclipse.linuxtools.rpm.ui.editor \
+  -a "-DjavacTarget=1.6 -DjavacSource=1.6"
 
 %install
 rm -rf %{buildroot}
