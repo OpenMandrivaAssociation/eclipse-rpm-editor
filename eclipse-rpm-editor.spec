@@ -6,7 +6,7 @@
 %define debug_package %{nil}
 
 Name:           eclipse-rpm-editor
-Version:        0.4.1
+Version:        0.4.2
 Release:        %mkrel 0.1.0
 Epoch:          0
 Summary:        RPM Specfile editor for Eclipse
