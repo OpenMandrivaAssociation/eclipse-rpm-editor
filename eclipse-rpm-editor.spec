@@ -4,7 +4,7 @@
 
 Name:           eclipse-rpm-editor
 Version:        0.6.0
-Release:        2
+Release:        4
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
 License:        EPL
