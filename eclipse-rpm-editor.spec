@@ -8,7 +8,7 @@ Release:        4
 Summary:        RPM Specfile editor for Eclipse
 Group:          Development/Java
 License:        EPL
-URL:            http://www.eclipse.org/linuxtools/
+URL:            https://www.eclipse.org/linuxtools/
 # This tarball was made using the included script, like so:
 #   sh ./fetch-specfile-editor.sh R0_6_0 0.6.0
 Source0:        specfile-editor-fetched-src-%{version}.tar.bz2
